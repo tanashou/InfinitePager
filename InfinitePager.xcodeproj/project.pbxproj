@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		CC9F988A2A06ADA3004EF5CB /* InfinitePagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F98892A06ADA3004EF5CB /* InfinitePagerApp.swift */; };
-		CC9F988C2A06ADA3004EF5CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F988B2A06ADA3004EF5CB /* ContentView.swift */; };
 		CC9F988E2A06ADA6004EF5CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC9F988D2A06ADA6004EF5CB /* Assets.xcassets */; };
 		CC9F98912A06ADA6004EF5CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC9F98902A06ADA6004EF5CB /* Preview Assets.xcassets */; };
+		CC9F989D2A06AE24004EF5CB /* InfinitePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F98982A06AE1E004EF5CB /* InfinitePager.swift */; };
+		CC9F989F2A06AE24004EF5CB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F989A2A06AE20004EF5CB /* PageViewController.swift */; };
+		CC9F98A02A06AE24004EF5CB /* Modulo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F989B2A06AE22004EF5CB /* Modulo.swift */; };
+		CC9F98A12A06AE24004EF5CB /* SamplePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F989C2A06AE23004EF5CB /* SamplePage.swift */; };
+		CC9F98A32A06AE7A004EF5CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F98A22A06AE7A004EF5CB /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CC9F98862A06ADA3004EF5CB /* InfinitePager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfinitePager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC9F98892A06ADA3004EF5CB /* InfinitePagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinitePagerApp.swift; sourceTree = "<group>"; };
-		CC9F988B2A06ADA3004EF5CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CC9F988D2A06ADA6004EF5CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC9F98902A06ADA6004EF5CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC9F98982A06AE1E004EF5CB /* InfinitePager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinitePager.swift; sourceTree = "<group>"; };
+		CC9F989A2A06AE20004EF5CB /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		CC9F989B2A06AE22004EF5CB /* Modulo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modulo.swift; sourceTree = "<group>"; };
+		CC9F989C2A06AE23004EF5CB /* SamplePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplePage.swift; sourceTree = "<group>"; };
+		CC9F98A22A06AE7A004EF5CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,11 @@
 			isa = PBXGroup;
 			children = (
 				CC9F98892A06ADA3004EF5CB /* InfinitePagerApp.swift */,
-				CC9F988B2A06ADA3004EF5CB /* ContentView.swift */,
+				CC9F98A22A06AE7A004EF5CB /* ContentView.swift */,
+				CC9F98982A06AE1E004EF5CB /* InfinitePager.swift */,
+				CC9F989A2A06AE20004EF5CB /* PageViewController.swift */,
+				CC9F989C2A06AE23004EF5CB /* SamplePage.swift */,
+				CC9F98972A06ADE2004EF5CB /* Helper */,
 				CC9F988D2A06ADA6004EF5CB /* Assets.xcassets */,
 				CC9F988F2A06ADA6004EF5CB /* Preview Content */,
 			);
@@ -65,6 +77,14 @@
 				CC9F98902A06ADA6004EF5CB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CC9F98972A06ADE2004EF5CB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CC9F989B2A06AE22004EF5CB /* Modulo.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC9F988C2A06ADA3004EF5CB /* ContentView.swift in Sources */,
+				CC9F98A12A06AE24004EF5CB /* SamplePage.swift in Sources */,
 				CC9F988A2A06ADA3004EF5CB /* InfinitePagerApp.swift in Sources */,
+				CC9F98A32A06AE7A004EF5CB /* ContentView.swift in Sources */,
+				CC9F989D2A06AE24004EF5CB /* InfinitePager.swift in Sources */,
+				CC9F98A02A06AE24004EF5CB /* Modulo.swift in Sources */,
+				CC9F989F2A06AE24004EF5CB /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +299,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +329,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
