@@ -37,24 +37,27 @@ not yet
 
 ## Usage
 
-Instructions on how to use your library, including code examples, screenshots, or links to documentation.
+Create a view that has a `@Binding` variable for the page number.
 
-## Features
-
-List of the main features and benefits of your library.
+```swift
+struct ContentView: View {
+    var body: some View {
+        InfinitePager(initialPageNum: 0) { pageNum in
+            SamplePage(pageNumber: pageNum)
+        }
+    }
+}
+```
 
 ## Requirements
 
-List of any requirements needed to use your library.
+only tested on iOS 14.3, but it should work on iOS 13.0+
 
-## Contribution Guidelines
-
-Information on how to contribute to your library, including guidelines for submitting issues, feature requests, or pull requests.
-
-## License
-
-Information about the license under which your library is released.
+## Contributing
 
 ## Contact Information
 
-A way for users to contact you if they have questions or feedback about your library.
+## License
+
+MIT
+
