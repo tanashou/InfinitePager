@@ -2,7 +2,7 @@
 
 SwiftUI library for creating infinite pagination with dynamic SwiftUI views.
 
-<!-- ![demo gif](img/demo.gif) -->
+![demo gif](img/demo.gif)
 
 ## Features
 
