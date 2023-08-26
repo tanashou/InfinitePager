@@ -11,9 +11,10 @@ import UIKit
 struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
     
+    @Binding var currentPageNum: Int
+    @Binding var pageNum0: Int
     @Binding var pageNum1: Int
     @Binding var pageNum2: Int
-    @Binding var pageNum3: Int
     
     var currentPageId: Int
     var indexOffset: Int
@@ -97,17 +98,21 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             case 1: // page moved forward
                 let updatingPageId = (currentPageId + 1) % 3
                 updatePage(updatingPageId: updatingPageId, newPageNum: parent.indexOffset * 3 + currentPageId + 1)
+                parent.currentPageNum += 1
             case -2: // page looped forward
                 let updatingPageId = (currentPageId + 1) % 3
                 parent.indexOffset += 1
                 updatePage(updatingPageId: updatingPageId, newPageNum: parent.indexOffset * 3 + currentPageId + 1)
+                parent.currentPageNum += 1
             case -1: // page moved backward
                 let updatingPageId = (currentPageId + 2) % 3
                 updatePage(updatingPageId: updatingPageId, newPageNum: parent.indexOffset * 3 + currentPageId - 1)
+                parent.currentPageNum -= 1
             case 2: // page looped backward
                 let updatingPageId = (currentPageId + 2) % 3
                 parent.indexOffset -= 1
                 updatePage(updatingPageId: updatingPageId, newPageNum: parent.indexOffset * 3 + currentPageId - 1)
+                parent.currentPageNum -= 1
             default:
                 break
             }
@@ -119,11 +124,11 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         private func updatePage(updatingPageId: Int, newPageNum: Int) {
             switch updatingPageId {
             case 0:
-                parent.pageNum1 = newPageNum
+                parent.pageNum0 = newPageNum
             case 1:
-                parent.pageNum2 = newPageNum
+                parent.pageNum1 = newPageNum
             case 2:
-                parent.pageNum3 = newPageNum
+                parent.pageNum2 = newPageNum
             default:
                 break
             }

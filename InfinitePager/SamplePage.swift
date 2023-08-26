@@ -9,9 +9,15 @@ import SwiftUI
 
 struct SamplePage: View {
     @Binding var pageNumber: Int
-    let color = Color(red: Double.random(in: 0...1),
-                      green: Double.random(in: 0...1),
-                      blue: Double.random(in: 0...1))
+    var color: Color
+    
+    init(pageNumber: Binding<Int>) {
+        self._pageNumber = pageNumber
+        self.color = Color(red: Double.random(in: 0...1),
+                                       green: Double.random(in: 0...1),
+                                       blue: Double.random(in: 0...1))
+        print("sample page initialized")
+    }
     
     var body: some View {
         ZStack {

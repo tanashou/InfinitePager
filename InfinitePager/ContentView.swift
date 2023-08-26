@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var currentPageNum = 0
+    
     var body: some View {
-        InfinitePager(initialPageNum: 0) { pageNum in
+        InfinitePager(currentPageNum: $currentPageNum) { pageNum in
             SamplePage(pageNumber: pageNum)
         }
     }
