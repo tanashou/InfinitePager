@@ -17,6 +17,8 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     @Binding var currentPageId: Int // Bindingにしないとresetできない。しかし，そうするとModifying state during view update エラーが起きる
     @Binding var indexOffset: Int
     
+    @Binding var reset: Bool
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

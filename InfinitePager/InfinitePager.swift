@@ -19,13 +19,13 @@ struct InfinitePager<PageView: View>: View {
     private var initialPageNum: Int
     private var modValue: Int
     private var pageNums: (Int, Int, Int)
-    private var reset: Bool
+    @Binding var shouldReset: Bool
     
     let pageView: (Binding<Int>) -> PageView
     
-    init(_ initialPageNum: Int, reset: Bool, @ViewBuilder pageView: @escaping (Binding<Int>) -> PageView) {
+    init(_ initialPageNum: Int, shouldReset: Binding<Bool>, @ViewBuilder pageView: @escaping (Binding<Int>) -> PageView) {
         self.initialPageNum = initialPageNum // use in reset function
-        self.reset = reset
+        self._shouldReset = shouldReset
         self.modValue = mod(initialPageNum, 3)
         
         // pageNum and pageId are in one-to-one correspondence.
@@ -55,9 +55,15 @@ struct InfinitePager<PageView: View>: View {
                      pageView($pageNum2),
                      pageView($pageNum3)]
         
-        PageViewController(pages: pages, pageNum1: $pageNum1, pageNum2: $pageNum2, pageNum3: $pageNum3, currentPageId: $currentPageId, indexOffset: $indexOffset)
-            .onChange(of: reset) { _ in
-                resetPageNums()
+        PageViewController(pages: pages, pageNum1: $pageNum1, pageNum2: $pageNum2, pageNum3: $pageNum3, currentPageId: $currentPageId, indexOffset: $indexOffset, reset: $shouldReset)
+            .onChange(of: shouldReset) { _ in
+                if shouldReset {
+                    DispatchQueue.main.async {
+                        resetPageNums()
+                        shouldReset = false
+                    }
+                    
+                }
             }
         
     }
@@ -72,8 +78,9 @@ struct InfinitePager<PageView: View>: View {
 }
 
 struct InfinitePager_Previews: PreviewProvider {
+    @State static var shouldReset = false
     static var previews: some View {
-        InfinitePager(0, reset: false) { pageNum in
+        InfinitePager(0, shouldReset: $shouldReset) { pageNum in
             SamplePage(pageNumber: pageNum)
         }
     }

@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            InfinitePager(initialPageNum, reset: shouldReset) { pageNum in
+            InfinitePager(initialPageNum, shouldReset: $shouldReset) { pageNum in
                 SamplePage(pageNumber: pageNum)
             }
             Text("reset page")
