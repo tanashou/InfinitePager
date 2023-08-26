@@ -14,9 +14,8 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     @Binding var pageNum1: Int
     @Binding var pageNum2: Int
     @Binding var pageNum3: Int
-    
-    var currentPageId: Int
-    var indexOffset: Int
+    @Binding var currentPageId: Int // Bindingにしないとresetできない。しかし，そうするとModifying state during view update エラーが起きる
+    @Binding var indexOffset: Int
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -33,8 +32,33 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
+        // need to change the pageNums when initialPageNum was modified.
+        DispatchQueue.main.async {
+            updatePages()
+        }
+        
         pageViewController.setViewControllers(
-            [context.coordinator.controllers[currentPageId]], direction: .forward, animated: true)
+            [context.coordinator.controllers[currentPageId]], direction: .forward, animated: false)
+    }
+    
+    func updatePages() {
+        let currentPage = indexOffset * 3 + currentPageId
+        let currentNewPageId = mod(currentPage, 3)
+        let pageNums: (Int, Int, Int)
+        switch currentNewPageId {
+        case 0:
+            pageNums = (currentPage, currentPage + 1, currentPage - 1)
+        case 1:
+            pageNums = (currentPage - 1, currentPage, currentPage + 1)
+        case 2:
+            pageNums = (currentPage + 1, currentPage - 1, currentPage)
+        default:
+            // never executes
+            pageNums = (0, 0, 0)
+        }
+        self.pageNum1 = pageNums.0
+        self.pageNum2 = pageNums.1
+        self.pageNum3 = pageNums.2
     }
     
     class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -55,7 +79,9 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
                     return nil
                 }
                 
-                detectPageLoop(index)
+                DispatchQueue.main.async {
+                    self.detectPageLoop(index)
+                }
                 
                 if index == 0 {
                     return controllers.last
@@ -71,7 +97,9 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
                     return nil
                 }
                 
-                detectPageLoop(index)
+                DispatchQueue.main.async {
+                    self.detectPageLoop(index)
+                }
                 
                 if index + 1 == controllers.count {
                     return controllers.first
